@@ -4,6 +4,7 @@ from app.helper.mongo import Mongo as MongoHelper
 from app.helper import constant as col
 from app.mod.mod_product.form import ProductForm
 from app.utils.query_insert import QueryInsert as QueryHelper
+from bson import ObjectId
 
 m = MongoHelper()
 insert_data = QueryHelper()
@@ -36,3 +37,34 @@ def save_product():
     insert_data.insertData(name_product,qty)
 
     return redirect("/")
+
+@mod_product.route("/edit/<string:_id>", methods=["GET"])
+def edit(_id):
+    oid = ObjectId(_id)
+    product = m.getCollection(col.PRODUCT).find_one({"_id" : oid})
+    print(product)
+    if not product:
+        return "Product not found"
+
+    return render_template("product/edit.html", product=product)
+
+@mod_product.route("/edit/<string:_id>", methods=["POST"])
+def save_edit(_id):
+    oid = ObjectId(_id)
+    form = ProductForm()
+
+    if not form.validate():
+        return jsonify({"error ": form.errors})
+
+    product = m.getCollection(col.PRODUCT).find_one({"_id": oid})
+    print(product)
+    if not product:
+        return "Product not found"
+
+    name_product = form.name_product.data
+    qty = form.qty.data
+    # m.getCollection(col.PRODUCT).update({"_id": oid}, {"name_product": name_product,"qty": qty}, upsert=True)
+    m.getCollection(col.PRODUCT).update({"_id": oid}, {"name_product": name_product,"qty": qty})
+
+    return redirect("/")
+
