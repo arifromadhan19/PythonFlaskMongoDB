@@ -68,3 +68,9 @@ def save_edit(_id):
 
     return redirect("/")
 
+@mod_product.route("/delete/<string:_id>", methods=["GET"])
+def delete(_id):
+    oid = ObjectId(_id)
+    m.getCollection(col.PRODUCT).delete_one({"_id":oid})
+    return redirect("/")
+
