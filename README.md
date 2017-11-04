@@ -7,3 +7,11 @@ product collection structure
     "name_product" : "buku",
     "qty" : 10
 }
+
+
+MongoDump
+mongodump --host localhost --port 27017 --db db_product --out /home/arif/...(your directory)
+
+MongoRestore
+mongorestore --host localhost --port 27017 --db db_product /home/arif/...(your directory)
+
