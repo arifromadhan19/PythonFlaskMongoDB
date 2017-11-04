@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Product</title>
+</head>
+<body>
+    <h1>CRUD MongoDB WITH PYTHON FLASK</h1>
+    <h1>by arifromadhan19@gmail.com</h1>
+
+    <p><a href="/create">create</a><p>
+    <table border="1">
+        <tr>
+            <td>Id product</td>
+            <td>Name Product</td>
+            <td>QTY Product</td>
+        </tr>
+
+        {% for product in list_product %}
+            <tr>
+                <td>{{product._id}}</td>
+                <td>{{product.name_product}}</td>
+                <td>{{product.qty}}</td>
+            </tr>
+        {% endfor  %}
+    </table>
+
+</body>
+</html>
