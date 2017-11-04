@@ -1,3 +1,15 @@
+# Enable protection agains *Cross-site Request Forgery (CSRF)*
+CSRF_ENABLED = True
+
+WTF_CSRF_ENABLED = False
+
+# Use a secure, unique and absolutely secret key for
+# signing the data.
+CSRF_SESSION_KEY = "secret"
+
+# Secret key for signing cookies
+SECRET_KEY = "secret"
+
 # MONGO CONFIG
 MONGO_DB = "db_product"
 MONGO_SERVER = '127.0.0.1'

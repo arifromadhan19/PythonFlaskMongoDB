@@ -104,7 +104,6 @@ ENV/
 #IDE
 .idea
 __pycache__
-/app/static/css/
 /node_modules/
 /bower_components/
 
